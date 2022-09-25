@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="ticketing">
+
+
+	<insert id="insert" parameterType="HashMap" useGeneratedKeys="true" keyProperty="id">  
+    <![CDATA[
+    
+
+	   INSERT INTO ticketing(user_id, coupon_id, seat_info_id, prfnm, prfplcnm, date_viewing, date_ticketed, check_used)
+	   VALUES (2, 3, (SELECT id FROM seat_info WHERE seat_info.position =#{resultSeat}), #{prfnm}, #{prfplcnm}, #{date_viewing}, NOW(), 0);
+	   	
+    ]]>
+    
+	</insert>
+	
+	<select id="ticketList" parameterType="int" resultType="HashMap">
+	<![CDATA[
+	
+		SELECT coupon_id, seat_info_id, prfnm, prfplcnm, date_ticketed, check_used
+		FROM ticketing
+		WERER id = #{id}
+		
+	]]>
+	</select>
+</mapper>

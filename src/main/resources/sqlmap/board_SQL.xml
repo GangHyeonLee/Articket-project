@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="board">
+
+   <!-- ================= 여기서 부턴 게시판 ======================== -->
+      <!-- 조회수 올리기 -->
+   <update id="updateViewCnt" >
+      update post
+       set view = view + 1 
+       where id = #{id}
+   </update> 
+   
+   <!-- 게시판 글 등록 -->
+   <insert id="insert" parameterType="hashMap" useGeneratedKeys="true" keyProperty="id">  
+    <![CDATA[
+       insert into post
+       (board_id, user_id, title, content, view, date_created, privated)
+         values
+         (#{board_id}, (SELECT id FROM user WHERE user.login_id = #{user_id}), #{title}, #{content}, #{view}, NOW(), #{privated})
+    ]]>
+   </insert>
+    
+    <!-- 게시판 글 상세정보 -->     
+   <select id="select_detail" parameterType="hashMap" resultType="hashMap">
+    <![CDATA[
+        select    post.id, 
+        user.nickname,   
+      title, 
+      content, 
+      date_created
+        from post inner join user on post.user_id = user.id
+        where post.id = #{boardId}
+        
+        
+    ]]>
+   </select>
+   
+   <!-- 게시판 글 수정 -->
+   <update id="update" parameterType="hashMap">
+   <![CDATA[
+      update post 
+      set
+      title = #{title},
+      content = #{content}
+      where id = #{boardId}
+   ]]>
+   </update>
+
+   <!-- 게시판 글 삭제 -->
+   <delete id="delete" parameterType="hashMap">
+   <![CDATA[
+      delete from post
+      where id = #{boardId}
+   ]]>
+   </delete>
+   
+   <select id="count_list" resultType="int">
+      SELECT
+	  COUNT( * ) AS Count
+		FROM post	
+   </select>
+
+   <!-- 게시판 글 목록 -->
+   <select id="select_list" resultType="com.articket.VO.BoardVO" parameterType="com.articket.VO.CriteriaVO">
+   <![CDATA[
+      
+      
+     select @ROWNUM:=@ROWNUM+1 AS ROWNUM, post.*
+    from(select post.id,title,view,user.nickname ,date_created
+		       from post 
+		       inner join user 
+		       on post.user_id = user.id 
+		       order by date_created asc LIMIT 1000000) post
+      WHERE (@ROWNUM:=0)=0
+      order by ROWNUM desc
+      limit #{pageStart},#{perPageNum};
+      
+      
+   ]]>
+   <!-- <if test="keyword != null and keyword != ''">
+      and (subject like CONCAT('%',#{keyword},'%') or name like CONCAT('%',#{keyword},'%'))
+   </if>
+      order by date_created desc -->
+</select>
+
+<!-- <select id="find_loginId" parameterType="String" resultType="String">
+
+   SELECT login_id
+   FROM user
+   WHERE id = #{user_id};
+
+
+
+</select> -->
+   
+   <!-- 페이징처리 -->
+   <!-- <select id="getListWithPaging" resultType="package com.articket.VO.BoardVO">
+   <![CDATA[
+        select *
+        from (
+            select post
+             id, title, content, date_created
+            from board
+            where id <= 20
+        ) 
+        where id > 10
+   ]]>
+</select> -->
+   <!-- ============================================================= -->
+
+</mapper>

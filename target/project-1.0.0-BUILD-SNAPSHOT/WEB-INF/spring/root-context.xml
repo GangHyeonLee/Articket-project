@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+   
+   <!-- Root Context: defines shared resources visible to all other web components -->
+<!-- for MariaDB -->
+ <bean id="dataSource"
+  class="com.zaxxer.hikari.HikariDataSource"
+  destroy-method="close">
+  <property name="driverClassName"
+   value="org.mariadb.jdbc.Driver" />
+  <property name="jdbcUrl"
+   value="jdbc:mariadb://localhost:3306/articket_db?serverTimezone=UTC&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8" />
+  <property name="username" value="root" />
+  <property name="password" value="spring" />
+ </bean>
+
+ <bean id="sqlSessionFactory"
+  class="org.mybatis.spring.SqlSessionFactoryBean">
+  <property name="dataSource" ref="dataSource" />
+  <property name="mapperLocations"
+   value="classpath:/sqlmap/**/*.xml" />
+
+ </bean>
+ <bean id="sqlSessionTemplate"
+  class="org.mybatis.spring.SqlSessionTemplate">
+  <constructor-arg index="0" ref="sqlSessionFactory" />
+ </bean>
+ 
+ <!-- ==================================================== -->
+ 
+ 
+     <!-- navermail설정 -->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> 
+     <property name="host" value="smtp.naver.com"/> <!-- 메이서버 호스트 -->
+     <property name="port" value="465"/> <!-- 메이서버 포트번호 -->
+     <property name="username" value="isaac1119"/> <!-- 자신의 이메일 아이디 -->
+     <property name="password" value="xlvlxlvlg3"/> <!-- 자신의 비밀번호 -->
+       <!-- 보안연결 SSL과 관련된 설정 -->
+     <property name="javaMailProperties">
+      <props>
+      <prop key="mail.smtp.auth">true</prop>
+      <prop key="mail.smtp.starttls.enable">true</prop>
+      <prop key="mail.smtps.checkserveridentity">true</prop>
+      <prop key="mail.smtps.ssl.trust">*</prop>
+      <prop key="mail.debug">true</prop>
+      <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+      <prop key="mail.smtp.ssl.enable">true</prop>
+      </props>
+     </property>
+    </bean>
+ 
+ <!-- ==================================================== -->
+   
+</beans>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="comment">
+   <!-- 댓글 조회 -->
+   	<select id="readComment" resultType="com.articket.VO.CommentVO" parameterType="String">
+   		select comment.id ,comment.user_id ,comment.content ,comment.date_created ,comment.date_updated ,user.nickname 
+					from comment
+					inner join user
+					on comment.user_id = user.id 
+					where post_id = #{board_no}
+					order by date_created desc
+   	</select>
+   	
+   	<!-- 댓글 작성 -->
+ 	<insert id="writeComment">
+   		insert into comment(post_id, user_id, depth_id, content, date_created, date_updated)
+		values(#{post_id}, #{user_id},null, #{content}, now(), null)
+	</insert>
+	
+	<!-- 댓글 수정 -->
+	<update id="updateComment" parameterType="com.articket.VO.CommentVO">
+		UPDATE comment SET CONTENT = #{content}, date_updated = now()
+		WHERE id = #{id}
+	</update>
+
+	<!-- 댓글 삭제 -->
+	<delete id="deleteComment" parameterType="com.articket.VO.CommentVO">
+		DELETE FROM comment
+		WHERE id = #{id}
+	</delete>
+	
+	<!-- 선택된 댓글 조회 -->
+	<select id="selectComment" resultType="com.articket.VO.CommentVO">
+		SELECT
+				post_id
+			  , id
+			  , content
+			  , user_id
+			  , date_created
+		  FROM comment
+		 WHERE id = #{id}
+	</select>
+	
+</mapper>

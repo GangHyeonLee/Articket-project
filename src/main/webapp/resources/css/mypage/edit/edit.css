@@ -1,0 +1,344 @@
+@charset "UTF-8";
+
+/* ----- 초기화 ----- */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+/* table */, caption, tbody, tfoot, thead, /* tr, th, td */,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+   margin: 0;
+   padding: 0;
+   border: 0;
+   font-size: 100%;
+   font: inherit;
+   vertical-align: baseline;
+}
+
+
+/* ----- HTML5 display-role reset for older browsers ----- */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+   display: block;
+}
+body {
+   line-height: 1;
+}
+ol, ul {
+   list-style: none;
+}
+blockquote, q {
+   quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+   content: '';
+   content: none;
+}
+table {
+   border-collapse: collapse;
+   border-spacing: 0;
+}
+
+
+/* ---------------------------------------------------------Join--------------- */
+#form {
+  border: 3px solid gray;
+  min-width: 300px;
+  max-width: 500px;
+  width: 50%;
+  padding: 10px;
+  margin: 0 auto;
+  margin-top: 10%; 
+  margin-bottom: 7%;
+}
+
+form table {
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.font-color {
+   color: red;
+}
+
+.login-input {
+   width: 60%;
+   height: 30px;
+   padding-left: 10px;
+   margin-bottom: 10px;
+   border-radius: 4px;
+   border: 2px solid black;
+   font-size: 10px;
+}
+
+.id-table {
+   padding-right: 54%;
+}
+
+.successIdChk {
+   font-size: 10px;
+}
+
+.pass-input {
+   width: 60%;
+   height: 30px;
+   padding-left: 10px;
+   margin-bottom: 10px;
+   border-radius: 4px;
+   border: 2px solid black;
+   font-size: 10px;
+}
+
+.pass-table {
+   padding-right: 50.5%;
+}
+
+.pwChk1 {
+   font-size: 10px;
+}
+
+.passChk-table {
+   padding-right: 44.5%;
+}
+
+.passcheck-input {
+   width: 60%;
+   height: 30px;
+   padding-left: 10px;
+   margin-bottom: 10px;
+   border-radius: 4px;
+   border: 2px solid dark;
+   font-size: 10px;
+}
+
+.successPwChk {
+   font-size: 10px;
+}
+
+.nick-table {
+   padding-right: 57%;
+}
+
+.nickname-input {
+/*    width: 45%; */
+   width: 60%;
+   height: 30px;
+   padding-left: 10px;
+   margin-bottom: 10px;
+   border-radius: 4px;
+   border: 2px solid black;
+   font-size: 10px;
+}
+/* 
+.nick-btn {
+   width: 15%;
+   height: 34px;
+   padding-left: 10px;
+   margin-bottom: 10px;
+   border-radius: 4px;
+   font-size: 10px;
+   cursor: pointer;
+   border: 2px solid dodgerblue;
+   background-color: dodgerblue;
+   color: white;
+} */
+
+.successNickNameChk {
+   font-size: 10px;
+}
+
+.name-table {
+   padding-right: 57%;
+}
+
+.name-input {
+   width: 60%;
+   height: 30px;
+   padding-left: 10px;
+   margin-bottom: 10px;
+   border-radius: 4px;
+   border: 2px solid black;
+   font-size: 10px;
+}
+
+.successNameChk {
+   font-size: 10px;
+}
+
+.email-table {
+   padding-right: 54%;
+}
+
+.email-input {
+   width: 60%; 
+    height: 30px;
+   padding-left: 10px;
+   margin-bottom: 10px;
+   border-radius: 4px;
+   border: 2px solid black;
+   font-size: 10px;
+}
+
+.successEmailChk {
+   font-size: 10px;
+}
+
+.phone-table {
+   padding-right: 50.5%;
+}
+
+.phone-input {
+   width: 60%;
+   height: 30px;
+   padding-left: 10px;
+   margin-bottom: 10px;
+   border-radius: 4px;
+   border: 2px solid black;
+   font-size: 10px;
+}
+
+.successPhoneChk {
+   font-size: 10px;
+}
+
+.edit-btn {
+   font-size: 18px;
+   width: 12%;
+   height: 40px;
+   border: 2px solid dodgerblue;
+   background-color: dodgerblue;
+   color: white;
+   text-align: center;
+   border-radius: 4px;
+   margin-bottom: 20px;
+   cursor: pointer;
+}
+
+.back-btn {
+   font-size: 18px;
+   width: 12%;
+   height: 40px;
+   border: 2px solid dodgerblue;
+   background-color: white;
+   color: dodgerblue;
+   text-align: center;
+   border-radius: 4px;
+   margin-bottom: 20px;
+   cursor: pointer;
+}
+
+.edit-btn1 {
+   font-size: 18px;
+   width: 50%;
+   height: 40px;
+   border: 2px solid dodgerblue;
+   background-color: dodgerblue;
+   color: white;
+   text-align: center;
+   border-radius: 4px;
+   margin-bottom: 20px;
+   cursor: pointer;
+}
+
+.title {
+   text-decoration: none;
+}
+
+.title1 {
+   text-align: center;
+   font-size: 50px;
+   color: red;
+}
+
+.title2 {
+   text-align: center;
+   font-size: 50px;
+}
+
+.join-link {
+   margin-bottom: 40px;
+   font-size: 15px;
+}
+
+.login-link {
+   text-decoration: underline;
+}
+
+.main-title {
+  margin-bottom: 20px;
+}
+
+.td-label {
+  float: left;
+  text-align: left;
+  margin: 30px 0 5px;
+  font-weight: bold;
+}
+
+td input {
+  border-radius: 4px;
+  width: 100%;
+  height: 30px;
+  padding-left: 10px;
+  margin: 5px auto 0;
+}
+
+td {
+   font-size: 13px;
+}
+
+.border-black:focus-within {
+  outline: 1px solid black;
+  border: 1px solid black;
+}
+
+
+.div-bar {
+   display: inline;
+  font-size: 14px;
+  color: gray;
+  text-align: center;
+}
+
+.td-btn {
+  width: 68%;
+  margin: 0 auto;
+}
+
+.btn-fontcolor {
+  border: 2px solid navy;
+  border-radius: 0;
+  width: 30%;
+  height: 40px;
+  background-color: white;
+  color: navy;
+  font-size: 15px;
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+.btn-backcolor {
+  width: 30%;
+  height: 40px;
+  max-width: 200px;
+  border: 0;
+  background-color: navy;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  padding: 5px;
+}
+
+.text-center {
+   text-align: center;
+}
+
